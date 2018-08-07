@@ -1,0 +1,5 @@
+curl.exe -i localhost:8080/oauth/token -d "grant_type=password&scope=read&username=springboot&password=isawesome" -u trustedclient:trustedclient123
+
+curl.exe -i -H "Authorization: bearer 64a513cd-6855-4378-92fc-d4cc7aba931e" localhost:8080/api 
+
+http://localhost:8080/oauth/authorize?redirect_uri=http://localhost:8080/api&grand_type=read&scope=read&response_type=code&client_id=cec207e4-f7de-40cb-8f7b-d05fa425e7a3&client_secret=f38c4fb2-0b8c-48a9-b853-e32790c7fbe3

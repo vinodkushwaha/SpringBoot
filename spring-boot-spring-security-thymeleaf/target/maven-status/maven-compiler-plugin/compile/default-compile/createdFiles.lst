@@ -1,0 +1,4 @@
+com\mkyong\config\SpringSecurityConfig.class
+com\mkyong\error\MyAccessDeniedHandler.class
+com\mkyong\controller\DefaultController.class
+com\mkyong\SpringBootWebApplication.class

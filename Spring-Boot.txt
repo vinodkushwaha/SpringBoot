@@ -1,0 +1,822 @@
+Spring Boot
+• Introduction to Spring Boot
+
+• Spring Applications
+
+• Spring Boot to the Rescue
+
+• Why Spring Boot?
+
+• Spring Boot Features
+Introduction to Spring Boot
+
+   Spring Boot is the Spring Framework. You can view Spring Boot as a new way
+    to create Spring applications with ease.
+
+
+   Spring Boot simplifies the way you develop, because it makes it easy to
+    create production-ready Spring-based applications that you can just run .
+
+
+   Spring Boot is an “opinionated” technology in that it will help you follow
+    the best practices for creating robust, extensible, and scalable Spring
+    applications.
+
+
+   http://projects.spring.io/spring-boot/
+Introduction to Spring Boot
+   Primary goals:
+       • Provide a radically faster and widely accessible getting started experience for
+        all Spring development.
+
+
+       • Be opinionated out of the box, but get out of the way quickly as requirements
+        start to diverge from the defaults.
+
+
+       • Provide a range of non-functional features that are common to large classes of
+        projects (e.g. embedded servers, security, metrics, health checks, externalized
+        configuration).
+
+
+       • Absolutely no code generation and no requirement for XML configuration.
+Spring Applications
+
+    Create a folder structure that contains your WAR (Web ARchive):
+    It must contain a   WEB-INF    folder with   lib   and   classes   subfolders that
+    contain the
+third-party libraries and your web application classes, respectively.
+   Some JSP (if needed), HTML, CSS, images, and JavaScript (if needed) files.
+   A file named   web.xml   that will contain the Spring      org.springframework.web.
+   servlet.DispatcherServlet      class.
+   Your Spring beans in the form <servlet-name>-servlet.xml (of course, you
+    can override this and add the complete location and name of your Spring
+    beans).
+Spring Applications
+
+    Use a utility to package your WAR file. You can use the jar tool, but most
+    people are more used to running Apache Maven or Gradle, or Apache Ant to
+    compile, test, and create the WAR file.
+    Use an application server or container to run your WAR file, such as Tomcat,
+    Jetty, Jboss, or WebSphere.
+Spring Boot to the rescue
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+
+@RestController
+@SpringBootApplication
+ public class SimpleWebApp {
+         public static void main(String[] args) {
+          SpringApplication.run(SimpleWebApp.class, args);
+     }
+
+
+@RequestMapping("/")
+          public String greetings(){
+                   return "<h1> Spring Boot Rocks in Java!</h1>";
+          }
+ }
+Spring Boot to the rescue
+mvn spring-boot:run
+
+
+   Open a browser and point to the URL   http://localhost:8080/
+You should see the message: Spring Boot Rocks in Java!.
+    Why Spring Boot?
+    Spring Boot has many features that make it suitable for:
+
+
+•      Cloud Native Applications that follow the 12 factor patterns
+
+
+•      Productivity increases by reducing time of development and deployment
+
+
+•      Enterprise-production-ready Spring applications
+
+
+•      Non-functional requirements, such as the Spring Boot Actuator (a module
+      that brings metrics, health checks, and management easily) and embedded
+      containers for running web applications (such as Tomcat, Undertow, Jetty, etc.)
+    Spring Boot Features
+   The SpringApplication class. In a Java Spring Boot application, the main
+    method executes this singleton class. This particular class provides a
+    convenient way to initiate a Spring application.
+
+
+   Spring Boot allows you to create applications without requiring any XML
+    configuration. Spring Boot doesn’t generate code.
+
+
+   Spring Boot is an “opinionated” technology.
+
+
+   Spring Boot allows you to execute code after the application has started.
+
+
+   Spring Boot allows you to externalize configurations by using an
+    application.properties or application.yml file.
+    Spring Boot Features
+
+   Spring Boot allows you to have profiles that will help your application run
+    in different environments.
+
+
+   Spring Boot provides a simple way to configure and manage your dependencies
+    by using starter poms
+
+
+   Spring Boot provides out-of-the-box non-functional requirements by using the
+    Spring Boot Actuator
+
+
+   Spring Boot provides @Enable<feature> annotations that help you to include,
+    configure, and use technologies like databases (SQL and NoSQL), caching,
+    scheduling, messaging, Spring integration, Spring cloud, and more.
+• Spring Boot with Maven
+<!-- Spring Boot Parent Dependencies-->
+      <parent>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-parent</artifactId>
+          <version>1.5.3.RELEASE</version>
+      </parent>
+  • Spring Boot with Maven
+ <!-- Add dependencies: starter poms -->
+Starters are a set of convenient dependency descriptors that you can include in your application.
+      <dependencies>
+          <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+          </dependency>
+          ...
+      </dependencies>
+
+
+If you want to use a starter pom, you have to add the following syntax.
+
+
+   <dependency>
+       <groupId>org.springframework.boot</groupId>
+       <artifactId>spring-boot-starter-[TECHNOLOGY]</artifactId>
+  </dependency>
+• Spring Boot with Maven
+<!-- Spring Boot Plugin for creating JAR/WAR files -->
+      <build>
+          <plugins>
+                <plugin>
+                   <groupId>org.springframework.boot</groupId>
+                   <artifactId>spring-boot-maven-plugin</artifactId>
+                </plugin>
+          </plugins>
+      </build>
+• Spring Boot using External tools
+    Spring Boot Using the Spring Initializr
+   http://start.spring.io/ (It’s hosted by Pivotal WebServices. )
+• Spring Boot using External tools
+   Spring Boot Using Spring Tool Suite (STS) @ https://spring.io/tools/sts/all
+• First Spring Boot application
+   Spring Boot Journal.
+    Take a look at the project’s file structure. You should have something
+    similar to
+    • First Spring Boot application
+   In order to run it, select the SpringBootJournalApplication.java class from
+    the Package Explorer view and right-click on it. Then choose Run As ➤ Spring
+    Boot App. Once it's running you can open a browser andpoint to
+    http://localhost:8080 . You should see something like
+• How Spring Boot works
+package org.springframework.boot.autoconfigure;
+ @Target(ElementType.TYPE)
+ @Retention(RetentionPolicy.RUNTIME)
+ @Documented
+ @Inherited
+ @SpringBootConfiguration
+ @EnableAutoConfiguration
+ @ComponentScan
+ public @interface SpringBootApplication {
+       Class<?>[] exclude() default {};
+       String[] excludeName() default {};
+       @AliasFor(annotation = ComponentScan.class, attribute = "basePackages")
+       String[] scanBasePackages() default {};
+       @AliasFor(annotation = ComponentScan.class, attribute = "basePackageClasses")
+       Class<?>[] scanBasePackageClasses() default {};
+   }
+Auto-Configuration
+spring run app.java --debug
+  ...
+  DEBUG 49009 --- [] autoConfigurationReportLoggingInitializer :
+  ===========================
+  AUTO-CONFIGURATION REPORT
+  ===========================
+    Positive matches:
+  -----------------
+  //You will see all the conditions that were met to enable a web application.    And
+this is because you have the @RestController annotation.
+    Negative matches:
+  -----------------
+  //You will find all the conditions that failed. For example you will find that the
+ActiveMQAutoConfiguration class did not match, because you don't have any reference of
+the ActiveMQConnectionFactory.
+Auto-Configuration
+   Disabling a Specific Auto-Configuration
+
+ import org.springframework.boot.autoconfigure.jms.activemq.ActiveMQAutoConfiguration
+ @RestController
+ @EnableAutoConfiguration(exclude={ActiveMQAutoConfiguration.class})
+ class WebApp{
+       @RequestMapping("/")
+           String greetings(){
+                "Spring Boot Rocks"
+           }
+ }
+
+...
+ Exclusions:
+ -----------
+      org.springframework.boot.autoconfigure.jms.activemq.ActiveMQAutoConfiguration
+ ...
+  @EnableAutoConfiguration
+   • Spring Framework and some of its modules—like Spring Core, Spring Data, Spring AMQP,
+     and Spring Integration provide @Enable<Technology> annotations
+
+   • Spring Boot takes advantage of these annotations.
+
+
+@EnableAutoConfiguration    annotation.
+
+
+...
+  // More declarations here ...
+  ...
+ @Import ( EnableAutoConfigurationImportSelector.class )
+ public @interface EnableAutoConfiguration {
+           Class<?>[] exclude() default {};
+           String[] excludeName() default {};
+   }
+  @EnableAutoConfiguration
+  protected List<String> getCandidateConfigurations(AnnotationMetadata metadata,
+                           AnnotationAttributes attributes) {
+     return SpringFactoriesLoader.loadFactoryNames(
+                            getSpringFactoriesLoaderFactoryClass(), getBeanClassLoader());
+   }
+   ...
+
+The SpringFactoriesLoader.loadFactories will look for the   META-INF/spring.factories
+defined in spring-boot-autoconfigure JAR.
+ Deploying Spring Boot
+ SSL
+
+ Creating Executable and Deployable WARs
+Spring Boot features
+ Custom Banner
+ SpringApplication app = new SpringApplication(SpringBootSimpleApplication.class);
+        app.setBanner(new Banner()
+        {
+                @Override
+                public void printBanner(Environment environment, Class<?>
+                               sourceClass, PrintStream out)
+                {
+                   out.print("\n\n\tThis is my own banner!\n\n".toUpperCase());
+                }
+        });
+Spring Boot features
+ SpringApplicationBuilder
+ 1. If you need to build an ApplicationContext hierarchy (multiple contexts with a
+                                                    parent/ child relationship),
+
+ 2. If you just prefer using a ‘fluent’ builder API.
+
+
+ Example 1: new SpringApplicationBuilder()
+                   .bannerMode(Banner.Mode.OFF)
+                   .sources(SimpleSpringBootApplication.class)
+                   .run(args);
+
+ Example 2: new SpringApplicationBuilder()
+                    .sources(Parent.class)
+                    .child(Application.class)
+                    .bannerMode(Banner.Mode.OFF)
+                    .run(args);
+    Spring Boot features
+     ApplicationRunner and CommandLineRunner
+
+•    CommandLineRunner   exposes the   public void run(String... args)   method
+
+•    ApplicationRunner   exposes the   public void run(ApplicationArguments args)   method.
+
+These are practically the same. It’s not necessary to implement both at the same time;
+
+If you want to have more control over the arguments, implement the ApplicationRunner
+interface.
+
+• InitializingBean: This particular class is always called when the Spring engine is
+  creating the instance to initialize it.
+    Application Configuration
+Spring Boot has different options for saving your application configuration:
+
+
+• application.properties , which should be located in the root classpath of your
+application
+
+
+• YAML notation file named application.yml     also needs to be located in the root
+classpath
+
+
+•   environment variables.    This is becoming the default practices for cloud scenarios.
+
+
+•   command-line arguments.
+ Application Configuration
+ Complete list of the common application properties :
+
+https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-
+properties.html
+
+data.server=localhost:8080
+
+
+@Value("${data.server}")
+       private String server;
+
+
+One of the best features from Spring (and of course from Spring Boot as well) is that you
+can access the properties values by using the @Value annotation
+Application Configuration
+ $ java -jar target/myapp.jar --data.server=remoteserver:3030
+
+ Changing   Location and Name   of the properties file
+
+       Spring Boot has an order to find the application.properties or YAML file.
+       •   The /config subdirectory located in the current directory
+       •   The current directory
+       •   A classpath /config package
+       •   The classpath root
+
+
+   -Dspring.config.name=mycfg
+
+   -Dspring.config.location=file:F:/mycfg.properties
+Application Configuration
+Profile Based
+
+
+ Suppose we have 2 file:
+
+ • application-qa.properties
+
+ • application-prod.properties
+
+
+ mvn clean spring-boot:run -Dspring.profiles.active=dev
+
+ Active profiles can be specified programmatically using the @ActiveProfiles
+ annotation, which is especially useful when running test cases, as follows:
+
+ @ActiveProfiles(“qa")
+Application Configuration
+Custom Properties Prefix
+
+  Spring Boot allows you to write and use your own type-safe custom property
+  prefix for your properties.
+
+  @ConfigurationProperties
+
+
+
+  <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+    </dependency>
+Application Configuration
+ Startup failures
+ If your application fails to start, registered FailureAnalyzers get a chance to
+ provide a dedicated error message and a concrete action to fix the problem.
+
+ Boot contains a series of analyzers for common startup exceptions such as
+ PortInUseException, NoUniqueBeanDefinitionException, and
+ UnsatisfiedDependencyException.
+
+ These can be found in the org.springframework.boot.diagnostics package.
+Application Configuration
+ Application Events
+ You can attach listeners for some of the    ApplicationEvent    events:
+
+ ApplicationStartedEvent    (sent at the start)
+
+ ApplicationEnvironmentPreparedEvent (sent when the environment is known)
+
+ ApplicationPreparedEvent    (sent after the bean definitions)
+
+ ApplicationReadyEvent    (sent when the application is ready)
+
+ ApplicationFailedEvent     (sent in case of exception during the startup)
+Spring Boot CLI
+•       spring run [options] <files> [--] [args]
+
+           spring run WebApp.java
+
+
+    • spring test [options] files [--] [args]
+
+
+            spring test MyTest.java
+
+    •   spring grab [options] files [--] [args]
+
+
+            spring grab MyTest.java
+
+
+    • spring    jar [options]   <jar-name>   <files>
+
+
+             spring jar app.jar app.groovy
+Spring Boot CLI
+• spring    war [options]   <war-name>   <files>
+
+• spring install [options] <coordinates>
+
+
+         spring install org.spockframework:spock-core:1.0-groovy-2.4
+
+
+•     spring uninstall [options] <coordinates>
+
+
+    • spring init [options] [location]
+
+           spring init
+     Spring Boot CLI
+spring init -d=web,data-jpa -g=com.example -a=demo --package-name=com.example -name=demo
+
+
+
+
+                                           • spring [--help] [--version] <command> [<args>]
+
+                                                spring help init
+
+
+
+
+      ./mvnw spring-boot:run
+ Using Spring with Spring Boot
+ If you have already several XML configuration files, you can integrate them with just one
+ annotation in your main application.
+ The org.springframework.context.annotation.ImportResource annotation accepts an array
+ of string types to add the XML definitions.
+
+
+@ImportResource({"META-INF/spring/services-context.xml","META-
+INF/spring/repositoriescontext.xml"})
+
+@SpringBootApplication
+Public class SpringXmlApplication {
+
+         @Autowired                   @ImportResource("classpath:applicationContext.xml")
+         TaskRepository task;
+           @Autowired
+         ServiceFacade service;
+           //More logic...
+ }
+ Web Development with Spring Boot
+   spring-web   module
+         has basic web integration features such as multipart file upload functionality,
+         initialization of the Spring container (by using servlet listeners), and a web-
+         oriented application context.
+
+
+   spring-mvc   module (aka, the web server module)
+        contains all the Spring MVC (Model-View-Controller) and REST services
+        implementations for web applications.
+
+The Spring MVC is designed around the   org.springframework.web.servlet.DispatcherServlet
+class.
+Spring MVC auto-configuration
+The auto-configuration adds the following features on top of Spring’s defaults:
+
+• Inclusion of ContentNegotiatingViewResolver and BeanNameViewResolver beans.
+
+• Support for serving static resources, including support for WebJars.
+
+• Automatic registration of Converter, GenericConverter, Formatter beans.
+
+• Support for HttpMessageConverters.
+
+• Automatic registration of MessageCodesResolver.
+
+• Static index.html support.
+
+• Custom Favicon support.
+
+• Automatic use of a ConfigurableWebBindingInitializer bean
+  Web Development with Spring Boot
+spring init -d=web,thymeleaf,data-jpa,data-rest -g=com.apress.spring -a=spring-boot-
+journal --package-name=com.apress.spring -name=spring-boot-journal -x
+Web Development with Spring Boot
+import org.springframework.data.jpa.repository.JpaRepository;
+import com.apress.spring.domain.JournalEntry;
+
+   public interface JournalRepository extends JpaRepository<JournalEntry, Long> { }
+
+
+./mvnw spring-boot:run
+
+The HAL (Hypertext Application Language) is a representation of media, such as links.
+
+
+This is used by the HATEOAS (Hypermedia as the Engine of Application State) as a way to
+manage REST endpoints through media links.
+
+
+HATEOAS is a REST service pattern in which navigation links are provided as part of the
+payload metadata. The client application determines the state and follows the
+transition URLs provided as part of the state.
+   Web Development with Spring Boot
+You can post a value to the REST API. Just execute the following command in a terminal
+window:
+
+curl.exe -d "@data.json" -H "Content-Type: application/json" -X POST
+http://localhost:8080/journalEntries
+
+
+
+
+Yes! You have the GET, POST, PUT, PATCH, and DELETE HTTP methods, which you can run
+against the
+ http://localhost:8080/journalEntries URL.
+ Web Development with Spring Boot
+ What about searching?
+
+public interface JournalRepository extends JpaRepository<JournalEntry, Long> {
+      List<JournalEntry> findByCreatedAfter(@Param("after") @DateTimeFormat(iso =ISO.DATE)
+Date date);
+      List<JournalEntry> findByCreatedBetween(@Param("after") @DateTimeFormat(iso
+=ISO.DATE) Date after,@Param("before") @DateTimeFormat(iso = ISO.DATE) Date before);
+          List<JournalEntry> findByTitleContaining(@Param("word") String word);
+          List<JournalEntry> findBySummaryContaining(@Param("word") String word);
+    }
+Web Development with Spring Boot
+What about searching?
+
+
+ "_links" : {
+      "self" : {
+         "href" : "http://localhost:8080/journalEntries"
+      },
+      "profile" : {
+         "href" : "http://localhost:8080/profile/journalEntries"
+      },
+       "search" : {
+          "href" : "http://localhost:8080/journalEntries/search"
+       }
+    },
+
+
+curl -i http://localhost:8080/journalEntries/search/findByTitleContaining?word=Cloud
+Web Development with Spring Boot
+Playing with the HAL Browser
+
+
+<dependency>
+          <groupId>org.springframework.data</groupId>
+          <artifactId>spring-data-rest-hal-browser</artifactId>
+  </dependency>
+
+
+
+
+The HAL browser is a handy API browser for hal+json data.
+ Testing with Spring Boot
+ By default, the spring-boot-starter-test pom includes the Spring integration test for
+ Spring applications, the JUnit, which is the de facto standard for unit testing Java
+ applications, AssertJ, Hamcrest (a library of matcher objects), and Mockito (the Java
+ mocking framework).
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class SprintBootApplicationTests {
+
+         @Test
+         public void contextLoads() {
+         }
+   }
+ Testing with Spring Boot
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(classes = SprintBootWebApplication.class)
+@WebAppConfiguration
+  public class SpringBootWebApplicationTests {
+            @Test
+          public void contextLoads() {
+          }
+    }
+Testing with Spring Boot
+private HttpMessageConverter mappingJackson2HttpMessageConverter;
+
+private MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
+              MediaType.APPLICATION_JSON.getSubtype(),
+              Charset.forName("utf8"));
+
+private MockMvc mockMvc;
+
+
+@Autowired
+private WebApplicationContext webApplicationContext;
+  Testing with Spring Boot
+
+There is another project that makes testing REST endpoint easier
+  https://github.com/jayway/rest-assured.
+
+The name of the library is Rest-Assured and it provides a fluent API to test RESTful
+APIs.
+    Working with Spring Data Repositories
+    The central interface in Spring Data repository abstraction is Repository
+
+The CrudRepository provides sophisticated CRUD functionality for the entity class that is
+being managed.
+public interface CrudRepository<T, ID extends Serializable>    extends Repository<T, ID> {
+
+      <S extends T> S save(S entity);
+
+      Optional<T> findOne(ID primaryKey);
+
+      Iterable<T> findAll();
+
+      Long count();
+
+      void delete(T entity);
+
+      boolean exists(ID primaryKey);
+}
+     Working with Spring Data Repositories
+public interface PagingAndSortingRepository<T, ID extends Serializable> extends
+                                                                  CrudRepository<T, ID> {
+
+    Iterable<T> findAll(Sort sort);
+
+    Page<T> findAll(Pageable pageable);
+}
+
+
+PagingAndSortingRepository<User, Long> repository = // … get access to a bean
+Page<User> users = repository.findAll(new PageRequest(1, 20));
+
+
+
+Spring provides persistence technology-specific abstractions like e.g. JpaRepository or
+MongoRepository.
+Working with Spring Data Repositories
+ Defining repository interfaces
+
+        As a first step you define a domain class-specific repository interface.
+
+ Selectively exposing CRUD methods
+
+ @NoRepositoryBean
+ interface MyBaseRepository<T, ID extends Serializable> extends Repository<T, ID> {
+
+     T findOne(ID id);
+
+     T save(T entity);
+ }
+
+ interface UserRepository extends MyBaseRepository<User, Long> {
+
+          User findByEmailAddress(EmailAddress emailAddress);
+ }
+    Working with Spring Data Repositories
+     Defining query methods
+
+        The repository proxy has two ways to derive a store-specific query from the method
+        name.
+
+        It can derive the query from the method name directly, or by using a manually
+        defined query. Available options depend on the actual store.
+
+
+        However, there’s got to be a strategy that decides what actual query is created.
+
+http://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.core-concepts
+
+
+      This class is a Dynamic Proxy, generated by Spring using the JDK Reflection API
+Data Access with Spring Boot
+   Data Access Using the JDBC Template with Spring Boot
+
+
+   Data Access Using JPA with Spring Boot
+
+
+   NoSQL Databases
+              classification system for these emergent NoSQL databases.
+                      •   Column (Cassandra, HBase, etc.)
+                      •   Document (CouchDB, MongoDB, etc.)
+                      •   Key-Value (Redis, Riak, etc.)
+                      •   Graph (Neo4J, Virtuoso, etc.)
+                      •   Multi-Model (OrientDB, ArangoDB, etc.)
+Messaging with Spring Boot
+Messaging can be synchronous and asynchronous, pub-sub and peer-to-peer, RPC and
+enterprise-based, Message Broker, ESB (Enterprise Service Bus), MOM (Message Oriented
+Middleware), etc.
+
+
+ JMS with Spring Boot
+ Messaging with Spring Boot
+   RabbitMQ with Spring Boot
+
+     RabbitMQ implements the AMQP protocol (Advance Message Queuing   Protocol   )
+
+
+ RabbitMQ/AMQP: Exchanges, Bindings, and Queues
+
+    AMQP defines   exchanges , which   are entities    where   the messages are sent. Every
+    exchange takes a message and routes it to a zero or more queues . This routing
+    involves an algorithm that is based on the exchange type and some rules, called
+    bindings .
+Messaging with Spring Boot
+Messaging with Spring Boot
+Messaging with Spring Boot
+ To connect to a remote    RabbitMQ,the application.properties   file:
+  spring.rabbitmq.host=mydomain.com
+  spring.rabbitmq.username=rabbituser
+  spring.rabbitmq.password=thisissecured
+  spring.rabbitmq.port=5672
+  spring.rabbitmq.virtual-host=/production
+Security with Spring Boot
+
+ Enable simple security
+
+
+ Security Using the application.properties File
+
+
+ In-Memory Security
+
+
+ Security Using a Database
+Security with Spring Boot
+ Securing Resources
+
+
+ Spring Boot with OAuth2
+Security with Spring Boot
+ Spring Boot with OAuth2
+
+
+
+
+There is a guide that talks about Spring Boot and OAuth2 that uses AngularJS as a client, and
+I recommend you read it:
+  https://spring.io/guides/tutorials/spring-bootoauth2/
+Spring Boot Actuator
+ actuator
+
+ autoconfig
+
+ beans
+
+ configprops
+
+ docs
+
+ dump
+
+ env
+
+ flyway
+
+ health
+
+ info
+Spring Boot Actuator
+ logfile
+
+ metrics
+
+ mappings
+
+ shutdown
+
+ trace
+Spring Boot Actuator
+Sensitive Endpoints
+
+ https://docs.spring.io/springboot/docs/current/reference/html/production-
+ready-endpoints.html
+ Changing the Endpoint ID
+
+       endpoints. beans .id=spring
+
+
+
+ Changing the Management Endpoints Path
+
+
+      management.port=-1
+

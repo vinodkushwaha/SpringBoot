@@ -1,0 +1,27 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.spring.config.ConfigProperties",
+      "name": "myapp",
+      "type": "com.spring.config.ConfigProperties"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.spring.config.ConfigProperties",
+      "name": "myapp.description",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.spring.config.ConfigProperties",
+      "name": "myapp.name",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.spring.config.ConfigProperties",
+      "name": "myapp.server-ip",
+      "type": "java.lang.String"
+    }
+  ]
+}
