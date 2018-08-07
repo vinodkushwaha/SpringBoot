@@ -1,0 +1,77 @@
+<web-app id="WebApp_ID" version="2.4"
+	xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+	<display-name>Archetype Created Web Application</display-name>
+	<!-- This is the root application context for whole web application. Spring 
+		loads this file and creates the ApplicationContext for whole application. 
+		File applicationContext.xml is loaded by ContextLoaderLoaderLinstner which 
+		is configured into web.xml file as the context configuration.There will be 
+		only one application context per web application. We can pass multiple files 
+		in the context configuration by commas or space separation. e.g. 
+		“WEB-INF/applicationContext.xml,WEB-INF/applicationContext-security.xml” -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring-mvc.xml</param-value>
+	</context-param>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<servlet>
+		<servlet-name>mvc-dispatcher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring-mvc.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>mvc-dispatcher</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+<!-- 	
+<servlet>
+  <servlet-name>webapp1</servlet-name>
+    <servlet-class>
+       org.springframework.web.servlet.DispatcherServlet
+    </servlet-class>
+
+ We require this configuration when we want to change the default 
+ name / location of the servlet specific configuration files
+ <init-param>
+   <param-name>contextConfigLocation</param-name>
+   <param-value>/WEB-INF/app1-servlet.xml</param-value>
+ </init-param>
+ <load-on-startup>1</load-on-startup>
+</servlet>
+
+<servlet>
+<servlet-name>webapp2</servlet-name>
+<servlet-class>
+    org.springframework.web.servlet.DispatcherServlet
+</servlet-class>
+
+We require this configuration when we want to change the default 
+name / location of the servlet specific configuration files
+<init-param>
+ <param-name>contextConfigLocation</param-name>
+ <param-value>/WEB-INF/app2-servlet.xml</param-value>
+</init-param>
+<load-on-startup>1</load-on-startup>
+</servlet>
+
+   <servlet-mapping>
+     <servlet-name>webapp1</servlet-name>
+     <url-pattern>/webapp1</url-pattern>
+   </servlet-mapping>
+   <servlet-mapping>
+     <servlet-name>webapp2</servlet-name>
+     <url-pattern>/webapp2</url-pattern>
+   </servlet-mapping>
+</web-app> -->
+
+</web-app>
