@@ -1,3 +1,13 @@
+﻿https://www.guru99.com/installation-configuration-mongodb.html#1
+
+prob:
+for session handling
+https://dzone.com/articles/using-http-session-spring
+
+Example:
+https://github.com/reljicd/spring-boot-shopping-cart
+
+
 Spring Boot
 • Introduction to Spring Boot
 
