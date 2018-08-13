@@ -1,4 +1,11 @@
-﻿https://www.guru99.com/installation-configuration-mongodb.html#1
+﻿=================Serach Query==============
+https://stackoverflow.com/questions/33546581/mongotemplate-criteria-query
+
+https://stackoverflow.com/questions/3305561/how-to-query-mongodb-with-like?rq=1
+
+
+
+https://www.guru99.com/installation-configuration-mongodb.html#1
 
 prob:
 for session handling
